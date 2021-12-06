@@ -11,7 +11,7 @@ class Tableau1 extends Phaser.Scene {
         this.load.image('fond', 'assets/unnamed.jpg');
 
 
-        this.load.image('hélico', 'assets/kisspng-helicopter-aircraft-pixel-art-clip-art-pixel-5abe3646676375.4239326215224151744235.png');
+        this.load.image('helico', 'assets/kisspng-helicopter-aircraft-pixel-art-clip-art-pixel-5abe3646676375.4239326215224151744235.png');
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
         //for (let i = 1; i <= 5; i++) {
@@ -37,7 +37,7 @@ class Tableau1 extends Phaser.Scene {
         this.bg2Container=this.add.container(0,0);
 
         let helico=this.add.image(0,0,'helico').setOrigin(0,0);
-        helico.setScale(1)
+        helico.setScale(0.05)
 
         //--------------background 1 (gris) --------------------
         this.bg1Container=this.add.container(0,0);
