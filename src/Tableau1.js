@@ -8,17 +8,18 @@ class Tableau1 extends Phaser.Scene {
 
 
         //exemple
+
         this.load.image('fond', 'assets/unnamed.jpg');
 
         this.load.image('ville1', 'assets/ville1.png');
         this.load.image('ville2', 'assets/ville2.png');
         this.load.image('ville3', 'assets/ville3.png');
 
-        this.load.image('avion', 'assets/avion_.png');
-        for(let j=1;j<=2;j++) {
-            this.load.image('avion' + j, 'assets/avion/avion_' + j + '.png');
+        this.load.image('avion', 'assets/plain/avion_.png');
+        for(let j=1;j<=3;j++) {
+            this.load.image('avion' + j, 'assets/plain/avion_' + j + '.png');
 
-        this.load.image('helico', 'assets/kisspng-helicopter-aircraft-pixel-art-clip-art-pixel-5abe3646676375.4239326215224151744235.png');
+
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
         //for (let i = 1; i <= 5; i++) {
@@ -61,12 +62,12 @@ class Tableau1 extends Phaser.Scene {
         ville1.setScale(0.457)
 
         //ANIMATION
-        this.avion = this.add.sprite(780, 0, 'avion').setOrigin(0,0);
-        this.anims.create({
-                key: 'avion1',
-                frames: this.getFrames('avion',2),
-                frameRate: 1,
-                repeat: 0
+            this.avion = this.add.sprite(580, 0, 'avion').setOrigin(0,0);
+            this.anims.create({
+                key: 'avion',
+                frames: this.getFrames('avion',3),
+                frameRate: 16,
+                repeat: -1
         });
         avion.setScale(0.5)
 
