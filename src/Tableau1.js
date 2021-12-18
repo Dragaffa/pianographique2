@@ -12,9 +12,9 @@ class Tableau1 extends Phaser.Scene {
         this.load.image('ville2', 'assets/ville2.png');
         this.load.image('ville3', 'assets/ville3.png');
 
-        this.load.image('avion', 'assets/avion_1/avion.png');
+
         for(let j=1;j<=3;j++) {
-            this.load.image('avion'+j, 'assets/avion_1/avion'+j+'.png');
+            this.load.image('avion'+j, 'assets/plain/avion'+j+'.png');
         }
 
     }
@@ -56,10 +56,10 @@ class Tableau1 extends Phaser.Scene {
 
         //ANIMATION
 
-            this.avion = this.add.sprite(580, 0, 'avion').setOrigin(0,0);
+            this.avion = this.add.image(0, 0, 'avion').setOrigin(0,0);
             this.anims.create({
                 key: 'avion',
-                frames: this.getFrames('avion',3),
+                frames: this.getFrames('avion1',3),
                 frameRate: 16,
                 repeat: 0
             });
