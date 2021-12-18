@@ -11,7 +11,12 @@ class Tableau1 extends Phaser.Scene {
         this.load.image('fond', 'assets/unnamed.jpg');
 
         this.load.image('ville1', 'assets/ville1.png');
+        this.load.image('ville2', 'assets/ville2.png');
+        this.load.image('ville3', 'assets/ville3.png');
 
+        this.load.image('avion', 'assets/avion_.png');
+        for(let j=1;j<=2;j++) {
+            this.load.image('avion' + j, 'assets/avion/avion_' + j + '.png');
 
         this.load.image('helico', 'assets/kisspng-helicopter-aircraft-pixel-art-clip-art-pixel-5abe3646676375.4239326215224151744235.png');
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
@@ -38,11 +43,15 @@ class Tableau1 extends Phaser.Scene {
 
         this.bg2Container=this.add.container(0,0);
 
-        let helico=this.add.image(0,0,'helico').setOrigin(0,0);
-        helico.setScale(0.05)
+
+        let ville3=this.add.image(0,225,'ville3').setOrigin(0,0);
+        ville3.setScale(0.457)
 
         //--------------background 1 (gris) --------------------
         this.bg1Container=this.add.container(0,0);
+
+        let ville2=this.add.image(0,400,'ville2').setOrigin(0,0);
+        ville2.setScale(0.457)
 
 
         //-------------ground (premier plan noir)---------------------------
@@ -52,7 +61,14 @@ class Tableau1 extends Phaser.Scene {
         ville1.setScale(0.457)
 
         //ANIMATION
-
+        this.avion = this.add.sprite(780, 0, 'avion').setOrigin(0,0);
+        this.anims.create({
+                key: 'avion1',
+                frames: this.getFrames('avion',2),
+                frameRate: 1,
+                repeat: 0
+        });
+        avion.setScale(0.5)
 
         //filtres
 
