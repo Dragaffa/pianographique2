@@ -15,9 +15,9 @@ class Tableau1 extends Phaser.Scene {
         this.load.image('ville2', 'assets/ville2.png');
         this.load.image('ville3', 'assets/ville3.png');
 
-        this.load.image('avion', 'assets/plain/avion_.png');
+        this.load.image('avion', 'assets/plaine/avion_.png');
         for(let j=1;j<=3;j++) {
-            this.load.image('avion' + j, 'assets/plain/avion_' + j + '.png');
+            this.load.image('avion' + j, 'assets/plaine/avion_' + j + '.png');
         }
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
@@ -65,7 +65,7 @@ class Tableau1 extends Phaser.Scene {
             this.avion = this.add.sprite(580, 0, 'avion').setOrigin(0,0);
             this.anims.create({
                 key: 'avion',
-                frames: this.getFrames('avion',3),
+                frames: this.getFrames('avion_',3),
                 frameRate: 16,
                 repeat: -1
         });
