@@ -10,6 +10,8 @@ class Tableau1 extends Phaser.Scene {
         //exemple
         this.load.image('fond', 'assets/unnamed.jpg');
 
+        this.load.image('ville1', 'assets/ville1.png');
+
 
         this.load.image('helico', 'assets/kisspng-helicopter-aircraft-pixel-art-clip-art-pixel-5abe3646676375.4239326215224151744235.png');
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
@@ -45,6 +47,9 @@ class Tableau1 extends Phaser.Scene {
 
         //-------------ground (premier plan noir)---------------------------
         this.groundContainer=this.add.container(0,0);
+
+        let ville1=this.add.image(0,400,'ville1').setOrigin(0,0);
+        ville1.setScale(0.457)
 
         //ANIMATION
 
