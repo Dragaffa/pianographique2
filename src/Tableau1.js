@@ -253,10 +253,21 @@ class Tableau1 extends Phaser.Scene {
 
 //son
         this.sonjet = this.sound.add('sonjet');
+        this.sonjet.setVolume(0.1);
+
         this.sco = this.sound.add('sco');
-        this.sco = this.sound.add('sonexp');
+        this.sco.setVolume(0.1);
+
+        this.sonexp = this.sound.add('sonexp');
+        this.sonexp.setVolume(0.1);
+
         this.jets = this.sound.add('jets');
+        this.jets.setVolume(0.1);
+
         this.jetss = this.sound.add('jetss');
+        this.jetss.setVolume(0.1);
+
+
 
         /**
          * Vitesse de déplacement du décor
