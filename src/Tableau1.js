@@ -18,6 +18,11 @@ class Tableau1 extends Phaser.Scene {
         this.load.image('ciel2', 'assets/istockphoto-1213363511-612x612.jpg');
         this.load.image('ciel3', 'assets/gradient-sky-1172968.jpg');
 
+        this.load.audio('sonjet', 'assets/jet1.mp3');
+        this.load.audio('sco', 'assets/sco.mp3');
+        this.load.audio('sonexp', 'assets/sonexp.mp3');
+        this.load.audio('jets', 'assets/jets.mp3');
+        this.load.audio('jetss', 'assets/jetss.mp3');
 
         for(let j=1;j<=3;j++) {
             this.load.image('avion'+j, 'assets/plain/avion'+j+'.png');
@@ -35,7 +40,7 @@ class Tableau1 extends Phaser.Scene {
         for(let j=1;j<=3;j++) {
             this.load.image('explosion'+j, 'assets/explo1/explosion'+j+'.png');
         }
-        for(let j=1;j<=11;j++) {
+        for(let j=1;j<=12;j++) {
             this.load.image('exp'+j, 'assets/explo2/e'+j+'.png');
         }
 
@@ -186,13 +191,13 @@ class Tableau1 extends Phaser.Scene {
         this.exp = this.add.sprite(-80, 0, 'e1').setOrigin(0,0);
         this.anims.create({
             key: 'exp',
-            frames: this.getFrames('exp',11),
+            frames: this.getFrames('exp',12),
             frameRate: 5,
-            repeat:-1
+            repeat:0
         });
         this.exp.setScale(0.3);
-        this.exp.play('exp');
-        this.exp.setVisible(false);
+
+
 
 
         //-------------ground (premier plan noir)---------------------------
@@ -246,7 +251,12 @@ class Tableau1 extends Phaser.Scene {
         this.avion4.setScale(0.05);
         this.avion4.play('avion4');
 
-
+//son
+        this.sonjet = this.sound.add('sonjet');
+        this.sco = this.sound.add('sco');
+        this.sco = this.sound.add('sonexp');
+        this.jets = this.sound.add('jets');
+        this.jetss = this.sound.add('jetss');
 
         /**
          * Vitesse de déplacement du décor
@@ -451,6 +461,7 @@ class Tableau1 extends Phaser.Scene {
 
 //avion
                 case Phaser.Input.Keyboard.KeyCodes.D:
+                    me.sound.play('jetss')
                     me.tweens.add({
                         targets: me.avion,
                         x: -250,
@@ -467,6 +478,7 @@ class Tableau1 extends Phaser.Scene {
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.F:
+                    me.sound.play('jets')
                     me.tweens.add({
                         targets: me.avion2,
                         x: 850,
@@ -483,6 +495,7 @@ class Tableau1 extends Phaser.Scene {
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.G:
+                    me.sound.play('sonjet')
                     me.tweens.add({
                         targets: me.avion3,
                         x: -200,
@@ -499,6 +512,7 @@ class Tableau1 extends Phaser.Scene {
                     break;
 
                 case Phaser.Input.Keyboard.KeyCodes.H:
+                    me.sound.play('sonjet')
                     me.tweens.add({
                         targets: me.avion4,
                         x: 950,
@@ -514,31 +528,32 @@ class Tableau1 extends Phaser.Scene {
                     });
                     break;
 
-                    //explosion
+//explosion
                 case Phaser.Input.Keyboard.KeyCodes.J:
+                    me.sound.play('sonexp')
                     me.tweens.add({
                         targets: me.explosion,
                         x: 300,
                         y: 350,
-                        duration: 2000,
+                        duration: 1000,
                         ease: 'Cubic.In',
                         repeat: 0,
                         delay: 0,
                         onComplete: function () {
                             me.explosion.x = 300;
                             me.explosion.y = -200;
-                            me.exp.visible=true;
-                            //me.explosion.play('exp');
+                            me.exp.play('exp')
+
 
                         }
                     });
-                    me.exp.setVisible (false);
                     break;
 
 
 //helico
 
-                case Phaser.Input.Keyboard.KeyCodes.L:
+                case Phaser.Input.Keyboard.KeyCodes.K:
+                    me.sound.play('sco')
                     if (me.helico.x==850) {
                         me.tweens.add({
                             targets: me.helico,
@@ -558,7 +573,8 @@ class Tableau1 extends Phaser.Scene {
                     }
                     break;
 
-                case Phaser.Input.Keyboard.KeyCodes.M:
+                case Phaser.Input.Keyboard.KeyCodes.L:
+                    me.sound.play('sco')
                     if (me.helico.x==-20) {
                         me.tweens.add({
                             targets: me.helico,
