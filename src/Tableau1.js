@@ -12,6 +12,8 @@ class Tableau1 extends Phaser.Scene {
         this.load.image('ville2', 'assets/ville2.png');
         this.load.image('ville3', 'assets/ville3.png');
         this.load.image('ciel', 'assets/ciel-bleu-voile-nuageux-CC-Susanavana-Pixabay.jpg');
+        this.load.image('ciel2', 'assets/istockphoto-1213363511-612x612.jpg');
+        this.load.image('ciel3', 'assets/gradient-sky-1172968.jpg');
 
 
         for(let j=1;j<=3;j++) {
@@ -36,11 +38,19 @@ class Tableau1 extends Phaser.Scene {
 
         this.fond=this.add.image(0,0,'fond').setOrigin(0,0);
         this.fond.setScale(2);
-        this.fond.visible=false;
+        this.fond.visible=true;
 
         this.ciel=this.add.image(0,0,'ciel').setOrigin(0,0);
         this.ciel.setScale(1);
         this.ciel.setVisible(false);
+
+        this.ciel2=this.add.image(0,0,'ciel2').setOrigin(0,0);
+        this.ciel2.setScale(2);
+        this.ciel2.setVisible(false);
+
+        this.ciel3=this.add.image(0,-300,'ciel3').setOrigin(0,0);
+        this.ciel3.setScale(1);
+        this.ciel3.setVisible(false);
 
         //--------------background 2 (tout au fond et flou)--------------------
 
@@ -98,13 +108,33 @@ class Tableau1 extends Phaser.Scene {
 
                         me.fond.setVisible(true);
                         me.ciel.setVisible(false);
+                        me.ciel2.setVisible(false);
+                        me.ciel3.setVisible(false);
                         break;
 
                 case Phaser.Input.Keyboard.KeyCodes.Z:
 
                         me.ciel.setVisible(true);
                         me.fond.setVisible(false);
+                        me.ciel2.setVisible(false);
+                        me.ciel3.setVisible(false);
                         break;
+
+                case Phaser.Input.Keyboard.KeyCodes.E:
+
+                    me.ciel2.setVisible(true);
+                    me.fond.setVisible(false);
+                    me.ciel.setVisible(false);
+                    me.ciel3.setVisible(false);
+                    break;
+
+                case Phaser.Input.Keyboard.KeyCodes.R:
+
+                    me.ciel3.setVisible(true);
+                    me.fond.setVisible(false);
+                    me.ciel.setVisible(false);
+                    me.ciel2.setVisible(false);
+                    break;
 
                 case Phaser.Input.Keyboard.KeyCodes.Q:
                     me.tweens.add({
