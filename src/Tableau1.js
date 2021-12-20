@@ -6,6 +6,9 @@ class Tableau1 extends Phaser.Scene {
 
         //exemple
 
+
+        this.load.audio('hson', '');
+
         this.load.image('fond', 'assets/unnamed.jpg');
 
         this.load.image('ville1', 'assets/ville1.png');
@@ -21,6 +24,19 @@ class Tableau1 extends Phaser.Scene {
         }
         for(let j=1;j<=3;j++) {
             this.load.image('avion2'+j, 'assets/plain2/avion_'+j+'.png');
+        }
+        for(let j=1;j<=3;j++) {
+            this.load.image('avion3'+j, 'assets/F22/avion'+j+'.png');
+        }
+        for(let j=1;j<=3;j++) {
+            this.load.image('avion4'+j, 'assets/F23/avion'+j+'.png');
+        }
+
+        for(let j=1;j<=3;j++) {
+            this.load.image('explosion'+j, 'assets/explo1/explosion'+j+'.png');
+        }
+        for(let j=1;j<=11;j++) {
+            this.load.image('exp'+j, 'assets/explo2/e'+j+'.png');
         }
 
         for(let j=1;j<=7;j++) {
@@ -136,6 +152,7 @@ class Tableau1 extends Phaser.Scene {
         this.ville3=this.add.image(0,225,'ville3').setOrigin(0,0);
         this.ville3.setScale(0.457);
 
+
         //--------------background 1 (gris) --------------------
         this.bg1Container=this.add.container(0,0);
 
@@ -151,6 +168,32 @@ class Tableau1 extends Phaser.Scene {
         });
         this.helico.setScale(0.03);
         this.helico.play('helico');
+
+//EXPLOSION
+
+        this.explosion = this.add.sprite(300, -200, 'explosion1').setOrigin(0,0);
+        this.anims.create({
+            key: 'explosion',
+            frames: this.getFrames('explosion',3),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.explosion.setScale(0.1);
+        this.explosion.play('explosion');
+
+
+
+        this.exp = this.add.sprite(-80, 0, 'e1').setOrigin(0,0);
+        this.anims.create({
+            key: 'exp',
+            frames: this.getFrames('exp',11),
+            frameRate: 5,
+            repeat:-1
+        });
+        this.exp.setScale(0.3);
+        this.exp.play('exp');
+        this.exp.setVisible(false);
+
 
         //-------------ground (premier plan noir)---------------------------
         this.groundContainer=this.add.container(0,0);
@@ -183,7 +226,25 @@ class Tableau1 extends Phaser.Scene {
         this.avion2.setScale(0.1);
         this.avion2.play('avion2');
 
+        this.avion3 = this.add.sprite(980, 0, 'avion1').setOrigin(0,0);
+        this.anims.create({
+            key: 'avion3',
+            frames: this.getFrames('avion3',3),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.avion3.setScale(0.05);
+        this.avion3.play('avion3');
 
+        this.avion4 = this.add.sprite(-200, -40, 'avion1').setOrigin(0,0);
+        this.anims.create({
+            key: 'avion4',
+            frames: this.getFrames('avion4',3),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.avion4.setScale(0.05);
+        this.avion4.play('avion4');
 
 
 
@@ -423,26 +484,99 @@ class Tableau1 extends Phaser.Scene {
 
                 case Phaser.Input.Keyboard.KeyCodes.G:
                     me.tweens.add({
-                        targets: me.helico,
-                        x: -20,
-                        y: 370,
-                        duration: 5000,
-                        ease: 'power2',
+                        targets: me.avion3,
+                        x: -200,
+                        y: 0,
+                        duration: 1000,
+                        ease: 'Linear',
                         repeat: 0,
                         delay: 0,
-                        yoyo:true,
-                        flipX:true,
                         onComplete: function () {
-                            me.helico.x=850
-                            me.helico.y=370
+                            me.avion3.x = 980;
+                            me.avion3.y = 0;
                         }
-
                     });
-                    //if (me.helico.x==-20){
-                        //me.helico.flipX=true
+                    break;
 
-                    //}
-                    //break;
+                case Phaser.Input.Keyboard.KeyCodes.H:
+                    me.tweens.add({
+                        targets: me.avion4,
+                        x: 950,
+                        y: -40,
+                        duration: 1000,
+                        ease: 'Linear',
+                        repeat: 0,
+                        delay: 0,
+                        onComplete: function () {
+                            me.avion4.x = -200;
+                            me.avion4.y = -40;
+                        }
+                    });
+                    break;
+
+                    //explosion
+                case Phaser.Input.Keyboard.KeyCodes.J:
+                    me.tweens.add({
+                        targets: me.explosion,
+                        x: 300,
+                        y: 350,
+                        duration: 2000,
+                        ease: 'Cubic.In',
+                        repeat: 0,
+                        delay: 0,
+                        onComplete: function () {
+                            me.explosion.x = 300;
+                            me.explosion.y = -200;
+                            me.exp.visible=true;
+                            //me.explosion.play('exp');
+
+                        }
+                    });
+                    me.exp.setVisible (false);
+                    break;
+
+
+//helico
+
+                case Phaser.Input.Keyboard.KeyCodes.L:
+                    if (me.helico.x==850) {
+                        me.tweens.add({
+                            targets: me.helico,
+                            x: -20,
+                            y: 370,
+                            duration: 4000,
+                            ease: 'power2',
+                            repeat: 0,
+                            delay: 0,
+
+                        });
+                    }
+                    me.helico.flipX=false;
+                    if (me.helico.x!==850){
+                        me.helico.flipX=true
+
+                    }
+                    break;
+
+                case Phaser.Input.Keyboard.KeyCodes.M:
+                    if (me.helico.x==-20) {
+                        me.tweens.add({
+                            targets: me.helico,
+                            x: 850,
+                            y: 370,
+                            duration: 4000,
+                            ease: 'power2',
+                            repeat: 0,
+                            delay: 0,
+
+                        });
+                    }
+                    me.helico.flipX=false;
+                    if (me.helico.x==-20){
+                        me.helico.flipX=true
+
+                    }
+                    break;
 
             }
         });
